@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bebbu Darling 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+}
+
+/* QUESTION BOX */
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:12px;
+  font-size:17px;
+}
+
+#yes{
+  background:#4CAF50;
+  color:white;
+}
+
+#no{
+  background:#f44336;
+  color:white;
+  position:absolute;
+}
+
+/* LOVE SCREEN */
+.love{
+  position:fixed;
+  inset:0;
+  display:none;
+  background: radial-gradient(circle,#ff5f9e,#ff1e56);
+  color:white;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  animation:fadeIn 1s ease;
+}
+
+.slideshow{
+  display:flex;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.slideshow img{
+  width:90px;
+  height:130px;
+  object-fit:cover;
+  border-radius:15px;
+  border:4px solid white;
+  animation:imgPop 2s infinite alternate;
+}
+
+.special{
+  transform:scale(1.25);
+  box-shadow:0 0 30px gold;
+}
+
+h1{
+  text-align:center;
+  animation:glow 1.5s infinite alternate;
+}
+
+/* ANIMATIONS */
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff;}
+  to{text-shadow:0 0 25px #ffd1dc;}
+}
+
+@keyframes imgPop{
+  from{transform:scale(1);}
+  to{transform:scale(1.08);}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.heart{
+  position:absolute;
+  font-size:24px;
+  animation:float 4s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Will you be my bebbu darling<br>for forever and ever? 💖</h2>
+  <button id="yes" ontouchstart="yesClick()" onclick="yesClick()">YES</button>
+  <button id="no" ontouchstart="moveNo()" onmouseover="moveNo()">NO</button>
+</div>
+
+<div class="love" id="love">
+  <div class="slideshow">
+    <img src="bebbu1.jpg">
+    <img src="bebbu2.jpg">
+    <img src="bebbu3.jpg">
+    <img src="bebbu4.jpg">
+    <img src="us-with-me.jpg" class="special">
+  </div>
+
+  <h1>Congratulations 💖<br>You are my Bebbu Darling forever 🫶</h1>
+  <audio id="music" src="ishq.mp3" loop></audio>
+</div>
+
+<script>
+function moveNo(){
+  const n=document.getElementById("no");
+  n.style.left=Math.random()*(window.innerWidth-100)+"px";
+  n.style.top=Math.random()*(window.innerHeight-100)+"px";
+}
+
+function yesClick(){
+  document.querySelector(".box").style.display="none";
+  const love=document.getElementById("love");
+  love.style.display="flex";
+  document.getElementById("music").play();
+  setInterval(spawn,250);
+}
+
+function spawn(){
+  const e=document.createElement("div");
+  e.className="heart";
+  e.innerText=["💖","✨","😘"][Math.floor(Math.random()*3)];
+  e.style.left=Math.random()*100+"vw";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),4000);
+}
+</script>
+
+</body>
+</html>
